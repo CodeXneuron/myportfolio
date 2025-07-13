@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeXneuron - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* GitHub Dark */
+            color: #E5E7EB; /* Light Gray */
+            background-image: radial-gradient(#1f2937 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Neuron background animation */
+        @keyframes neuron-animation {
+            0% { transform: rotate(0deg); opacity: 0.8; }
+            50% { transform: rotate(180deg); opacity: 0.4; }
+            100% { transform: rotate(360deg); opacity: 0.8; }
+        }
+
+        .neuron-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(34, 211, 238, 1) 0%, rgba(0, 0, 0, 0.5) 80%);
+            animation: neuron-animation 5s infinite linear;
+            z-index: -1;
+        }
+
+        /* Loading page styles */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #loading .neuron {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 1) 0%, rgba(0, 0, 0, 0.5) 80%);
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        #loading .neuron::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.6);
+            animation: pulseLight 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(0.8); opacity: 1; }
+        }
+
+        @keyframes pulseLight {
+            0% { transform: scale(0.9); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(0.9); opacity: 0.4; }
+        }
+
+        /* Welcome screen styles */
+        #welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #2b1501, #01175f, #003b24, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+         /* Centering the logo */
+        #welcome-screen .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        #welcome-screen .intro-text {
+            color: white;
+            font-size: 6rem;
+            font-weight: 1500;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(34, 211, 238, 1), 0 0 20px rgba(34, 211, 238, 0.8);
+        }
+
+        #welcome-screen .intro-subtext {
+            color: #ffffff;
+            margin-top: 10px;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        #welcome-screen .lets-go-btn {
+            margin-top: 50px;
+            padding: 20px 40px;
+            background-color: #22D3EE;
+            color: #1E293B;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #welcome-screen .lets-go-btn:hover {
+            background-color: #38BDF8;
+            transform: scale(1.25);
+        }
+
+      
+
+        #welcome-screen .logo-container img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 50%;
+            border: 2px solid #22D3EE;
+        }
+
+        /* Main content styles */
+        #main-content {
+            display: none;
+        }
+
+        .glass-effect {
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .accent-color {
+            color: #22d3ee;
+        }
+
+        .accent-bg {
+            background-color: #22d3ee;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .skill-badge {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: capitalize;
+            font-weight: 600;
+        }
+
+        .project-card, .cert-card {
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover, .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            color: #cbd5e0;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #22d3ee;
+            color: #1e293b;
+        }
+
+        .brand-name {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #22d3ee;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #cbd5e0;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #a0aec0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Neuron Background -->
+    <div class="neuron-background"></div>
+
+    <!-- Loading Page -->
+    <div id="loading">
+        <div class="neuron"></div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <div>
+            <div class="intro-text">Welcome to CodeXneuron</div>
+            <div class="intro-subtext">Your journey into the world of Machine Learning and Computer Engineering begins here.</div>
+            <div class="logo-container">
+                <img src="logo.png" alt="CodeXneuron Logo">
+            </div>
+            <button class="lets-go-btn" onclick="goToMainContent()">Let's Go In</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display:none;">
+        <!-- Header & Navigation -->
+        <header class="glass-effect sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="text-2xl font-bold text-white">
+                        <a href="#" class="brand-name">CodeXneuron</a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#certifications" class="nav-link">Certifications</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                        <a href="#cv" class="nav-link">Download CV</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-white focus:outline-none">
+                            <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container mx-auto px-6 py-12">
+
+            <!-- Hero Section -->
+            <section id="hero" class="flex flex-col-reverse md:flex-row items-center justify-between min-h-[70vh]">
+                <div class="md:w-2/3 text-center md:text-left mt-8 md:mt-0">
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="accent-color">KOSALA NAYANAJITH DESHAPRIYA</span>
+                    </h1>
+                    <p class="hero-subtitle mt-4">
+                        Computer Engineering Student at the University of Jaffna.
+                    </p>
+                    <p class="hero-description mt-2">
+                        Passionate about Machine Learning, Web Development, and AI. Founder of CodeXneuron.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+                        <a href="#contact" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">
+                            Get In Touch
+                        </a>
+                        <a href="https://github.com/CodeXneuron" target="_blank" class="flex items-center space-x-2 border-2 border-gray-600 hover:border-white text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                            <i data-lucide="github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kosala-nayanajith-deshapriya-a4065a248" target="_blank" class="flex items-center space-x-2 border-2 border-gray-600 hover:border-white text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                            <i data-lucide="linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQHCHj0pP2hPuQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728053509704?e=1758153600&v=beta&t=8040NShEtKi7uoMtmlLpTT80KzlRwJE_O_warTpRpWU" 
+                         alt="KOSALA NAYANAJITH DESHAPRIYA's profile picture"
+                         class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl mx-auto border-4 border-cyan-500">
+                </div>
+            </section>
+
+            <!-- About Me Section -->
+            <section id="about" class="py-20">
+                <h2 class="section-title">About Me</h2>
+                <div class="max-w-4xl mx-auto text-center text-gray-300 text-lg leading-relaxed">
+                    <p>
+                        I am an ambitious and motivated Computer Engineering undergraduate with practical experience in Machine Learning, Web Development, AI frameworks, e-commerce, and communication technologies. I have served as an IEEE PES editor, gaining editorial, technical writing, collaboration, and leadership skills. I am passionate about delivering user-focused GUI and web applications and exploring the potential of machine learning.
+                    </p>
+                    <p class="mt-4">
+                        My goal is to build practical solutions and pursue further innovations in the fields of AI and machine learning, while also continuing to grow as a web developer and AI enthusiast. As the founder of CodeXneuron, I am committed to pushing the boundaries of technology in the ML and computer engineering space.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-20">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i data-lucide="code" class="mr-2 accent-color"></i>Languages</h3>
+                            <span class="skill-badge">C#</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">HTML/CSS</span>
+                            <span class="skill-badge">SQL</span>
+                        </div>
+                        <div class="glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i data-lucide="brain-circuit" class="mr-2 accent-color"></i>ML / AI</h3>
+                            <span class="skill-badge">Supervised Learning</span>
+                            <span class="skill-badge">Unsupervised Learning</span>
+                            <span class="skill-badge">NLP</span>
+                            <span class="skill-badge">Scikit-learn</span>
+                            <span class="skill-badge">TensorFlow</span>
+                            <span class="skill-badge">Keras</span>
+                        </div>
+                        <div class="glass-effect p-6 rounded-lg">
+                            <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i data-lucide="server" class="mr-2 accent-color"></i>Frameworks & Tools</h3>
+                            <span class="skill-badge">Flask</span>
+                            <span class="skill-badge">WordPress</span>
+                            <span class="skill-badge">Visual Studio</span>
+                            <span class="skill-badge">VS Code</span>
+                            <span class="skill-badge">Git & GitHub</span>
+                            <span class="skill-badge">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-20">
+                <h2 class="section-title">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Project 1: WhatsApp-Based AI Reminder Bot -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=AI+Reminder+Bot" alt="AI Reminder Bot">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">WhatsApp-Based AI Reminder Bot</h3>
+                            <p class="text-gray-400 text-base h-24">Designing and developing a full-stack AI reminder bot using Python, Flask, and Twilio API for WhatsApp integration, with NLP for intent detection and a custom scheduler for personalized reminders.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">Python</span><span class="skill-badge">Flask</span><span class="skill-badge">Twilio API</span><span class="skill-badge">NLP</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                    <!-- Project 2: Booking.O -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Booking.O" alt="Booking.O">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Booking.O</h3>
+                            <p class="text-gray-400 text-base h-24">Developed a desktop GUI application for hotel room bookings with encrypted login forms and real-time availability features.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">C#</span><span class="skill-badge">Visual Studio</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                    <!-- Project 3: Laptop Price Predictor Web App -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Laptop+Price+Predictor" alt="Laptop Price Predictor">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Laptop Price Predictor Web App</h3>
+                            <p class="text-gray-400 text-base h-24">Developed and deployed an ML-driven web app using Random Forest Regression to predict laptop prices based on specs. Hosted on Heroku for real-time user interaction.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">Flask</span><span class="skill-badge">Machine Learning</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                    <!-- Project 4: AI Chatbot with GPT-4o-mini -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=AI+Chatbot" alt="AI Chatbot">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">AI Chatbot with GPT-4o-mini</h3>
+                            <p class="text-gray-400 text-base h-24">Built a simple AI chatbot integrating GPT-4o-mini via OpenAI API. This marked my entry into ML/AI demo development.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">Python</span><span class="skill-badge">OpenAI API</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                    <!-- Project 5: FreelancerSL - Sri Lanka Marketplace -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Freelancer+SL" alt="FreelancerSL">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">FreelancerSL - Sri Lanka Marketplace</h3>
+                            <p class="text-gray-400 text-base h-24">Created a marketplace platform enabling secure payments, chat features, and project management for Sri Lankan freelancers.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">WordPress</span><span class="skill-badge">Web Dev</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                    <!-- Project 6: Joystick-controlled Wheelchair -->
+                    <div class="project-card">
+                        <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Joystick+Wheelchair" alt="Joystick Wheelchair">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Joystick-Controlled Wheelchair</h3>
+                            <p class="text-gray-400 text-base h-24">Designed and developed a joystick-controlled wheelchair to empower individuals with accessibility needs.</p>
+                        </div>
+                        <div class="p-6 pt-0"><span class="skill-badge">Design</span><span class="skill-badge">Engineering</span></div>
+                        <div class="p-6 pt-0"><a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold flex items-center"><i data-lucide="github" class="mr-1 h-4 w-4"></i> View Code</a></div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section id="certifications" class="py-20">
+                <h2 class="section-title">Certifications & Achievements</h2>
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- Certification 1 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert1.png" alt="Certification Image 1" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">BITCODE V5, The Inter-University Coding Competition</h3>
+                            <p class="text-gray-400">Rajarata University of Sri Lanka, Nov 2024</p>
+                            <p class="text-cyan-400">Skills: Java</p>
+                        </div>
+                    </div>
+
+                    <!-- Certification 2 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert2.png" alt="Certification Image 2" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Coding the Static Restaurant Site with Bootstrap (Framework)</h3>
+                            <p class="text-gray-400">The Johns Hopkins University, Coursera | Credential ID: PTO5MMCDJ9I3, Oct 2024</p>
+                            <p class="text-cyan-400">Skills: Web Design, Web Development, JavaScript, jQuery, Bootstrap, HTML, CSS</p>
+                        </div>
+                    </div>
+
+                    <!-- Certification 3 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert3.png" alt="Certification Image 3" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">HTML, CSS, and JavaScript for Web Developers</h3>
+                            <p class="text-gray-400">The Johns Hopkins University, Coursera | Credential ID: L7RX5IWOWBUE, Oct 2024</p>
+                            <p class="text-cyan-400">Skills: HTML, CSS, JavaScript, Visual Studio, Web Development</p>
+                        </div>
+                    </div>
+
+                    <!-- Certification 4 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert4.png" alt="Certification Image 4" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Introduction to CSS3 Web Development</h3>
+                            <p class="text-gray-400">The Johns Hopkins University, Coursera | Credential ID: P419RQDIFLIV, Oct 2024</p>
+                            <p class="text-cyan-400">Skills: CSS3, Web Development</p>
+                        </div>
+                    </div>
+
+                    <!-- Certification 5 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert5.png" alt="Certification Image 5" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Build a Full Website Using WordPress</h3>
+                            <p class="text-gray-400">Coursera | Credential ID: IWN014KCC87, Oct 2024</p>
+                            <p class="text-cyan-400">Skills: WordPress</p>
+                        </div>
+                    </div>
+
+                    <!-- Certification 6 -->
+                    <div class="cert-card p-6 flex flex-col md:flex-row items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <img src="assets/images/cert6.png" alt="Certification Image 6" class="w-16 h-16 object-cover rounded-md">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Build a Free Website With WordPress</h3>
+                            <p class="text-gray-400">Coursera | Credential ID: IAFZ7U1NID0Q, Oct 2024</p>
+                            <p class="text-cyan-400">Skills: WordPress</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download CV Section -->
+            <section id="cv" class="py-20">
+                <h2 class="section-title">Download CV</h2>
+                <div class="max-w-2xl mx-auto text-center">
+                    <p class="text-gray-300 text-lg mb-8">
+                        Feel free to download my CV for more details on my education, projects, and professional experience.
+                    </p>
+                    <a href="https://drive.google.com/file/d/1gaN9CNQpbF8prAa6gk71w6UWEsFGVpY6/view?usp=sharing" download 
+                       class="inline-block accent-bg text-gray-900 font-bold text-lg py-4 px-8 rounded-lg hover:bg-cyan-500 transition-colors transform hover:scale-105">
+                       Download CV
+                    </a>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-20">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="max-w-2xl mx-auto text-center">
+                    <p class="text-gray-300 text-lg mb-8">
+                        I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    </p>
+                    <a href="mailto:deahapriyakosala@gmail.com" 
+                       class="inline-block accent-bg text-gray-900 font-bold text-lg py-4 px-8 rounded-lg hover:bg-cyan-500 transition-colors transform hover:scale-105">
+                       Say Hello
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2024 KOSALA NAYANAJITH DESHAPRIYA. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu on link click
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Hide the loading page when the content is fully loaded
+        window.addEventListener('load', () => {
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Welcome screen transition
+        function goToMainContent() {
+            document.getElementById('welcome-screen').style.opacity = '0'; // Fade out welcome screen
+            setTimeout(function() {
+                document.getElementById('welcome-screen').style.display = 'none'; // Hide the welcome screen after fade-out
+                document.getElementById('main-content').style.display = 'block'; // Show the main content
+            }, 500); // Delay to match the fade-out transition duration
+        }
+    </script>
+</body>
+</html>
