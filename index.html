@@ -26,6 +26,10 @@
             color: var(--light-gray);
             overflow-x: hidden;
         }
+        
+        body.overflow-hidden {
+            overflow: hidden;
+        }
 
         /* Animated Aurora Background for main content */
         body::before {
@@ -148,6 +152,40 @@
         .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
         .brand-name { font-weight: 700; color: white; }
 
+        /* MOBILE MENU STYLES */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(16px);
+            z-index: 40; /* Below the header */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-out;
+        }
+        #mobile-menu.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-nav-link {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--medium-gray);
+            padding: 1rem 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .mobile-nav-link:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+        
         /* General Styles */
         .section-title {
             font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
@@ -169,7 +207,7 @@
         }
         .certificate-item { cursor: pointer; }
         
-        /* Original Skill Bar Styles (still needed) */
+        /* SKILL SECTION */
         .skill-item { margin-bottom: 1rem; }
         .skill-item .skill-info {
             display: flex;
@@ -186,27 +224,88 @@
         .progress-bar-inner {
             background-color: var(--accent-color);
             height: 100%;
-            width: 0; /* Initial width is 0 */
+            width: 0;
             border-radius: 0.5rem;
-            transition: width 1.5s ease-out; /* Animate the width property */
+            transition: width 1.5s ease-out;
+        }
+        .skill-card {
+            background: rgba(20, 26, 34, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0;
+            border-left: none;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .competencies-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            color: var(--light-gray);
+        }
+        .competency-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Styles for Image Testimonials */
+        .testimonial-image-container {
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        .testimonial-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .interactive-card:hover .testimonial-image {
+            transform: scale(1.05);
+        }
+        .testimonial-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1.5rem 0.75rem 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            font-weight: 600;
+            font-size: 0.875rem;
         }
         
-        /* Modal Lightbox Styles */
+        /* MODAL LIGHTBOX */
         #modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
-            display: none; /* Hidden by default */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
-        #modal-overlay.visible {
-            display: flex;
-        }
+        #modal-overlay.visible { display: flex; }
         #modal-content {
             position: relative;
             max-width: 90vw;
@@ -214,9 +313,7 @@
             transform: scale(0.95);
             transition: transform 0.3s ease-in-out;
         }
-        #modal-overlay.visible #modal-content {
-            transform: scale(1);
-        }
+        #modal-overlay.visible #modal-content { transform: scale(1); }
         #modal-image {
             max-width: 100%;
             max-height: 100%;
@@ -238,68 +335,7 @@
             line-height: 1;
             transition: transform 0.2s;
         }
-        #modal-close:hover {
-            transform: scale(1.1) rotate(90deg);
-        }
-
-        /* New styles for the skill category cards */
-        .skill-card {
-            background: rgba(20, 26, 34, 0.4);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
-        }
-
-        /* Enhanced h3 title to support icons */
-        .skill-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0;
-            border-left: none;
-            padding-left: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        /* Styling for the soft skills list */
-        .competencies-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-            color: var(--light-gray);
-        }
-        .competency-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-        }
-
-        /* Styles for Image Testimonials */
-        .testimonial-image-container {
-            overflow: hidden;
-            border-radius: 0.75rem;
-        }
-        
-        .testimonial-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .interactive-card:hover .testimonial-image {
-            transform: scale(1.05);
-        }
+        #modal-close:hover { transform: scale(1.1) rotate(90deg); }
     </style>
 </head>
 <body class="antialiased">
@@ -324,11 +360,11 @@
 
     <div id="main-content">
         <header class="sticky top-0 z-50">
-            <nav class="container mx-auto px-6 py-4">
+            <nav class="container mx-auto px-4 sm:px-6 py-4">
                 <div class="flex items-center justify-between">
                     <a href="#" class="flex items-center">
                         <img src="https://media.licdn.com/dms/image/v2/D5603AQHCHj0pP2hPuQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728053509704?e=1758153600&v=beta&t=8040NShEtKi7uoMtmlLpTT80KzlRwJE_O_warTpRpWU" alt="Kosala Nayanajith profile picture" class="h-10 w-10 mr-3 rounded-full object-cover" referrerpolicy="no-referrer">
-                        <span class="brand-name text-2xl">Kosala Nayanajith Deshapriya</span>
+                        <span class="brand-name text-xl md:text-2xl">Kosala Nayanajith<span class="hidden sm:inline"> Deshapriya</span></span>
                     </a>
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="#about" class="nav-link">About</a>
@@ -340,19 +376,33 @@
                         <a href="#cv" class="nav-link">Download CV</a>
                     </div>
                     <div class="md:hidden">
-                        <button id="mobile-menu-button" class="text-white focus:outline-none"><i data-lucide="menu"></i></button>
+                        <button id="mobile-menu-button" class="text-white focus:outline-none z-50 relative">
+                            <i data-lucide="menu" id="menu-icon" class="transition-transform duration-300"></i>
+                        </button>
                     </div>
                 </div>
             </nav>
         </header>
+        
+        <div id="mobile-menu" class="md:hidden">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#skills" class="mobile-nav-link">Skills</a>
+                <a href="#projects" class="mobile-nav-link">Projects</a>
+                <a href="#certifications" class="mobile-nav-link">Certifications</a>
+                <a href="#testimonials" class="mobile-nav-link">Testimonials</a>
+                <a href="#contact" class="mobile-nav-link">Contact</a>
+                <a href="#cv" class="mobile-nav-link">Download CV</a>
+            </div>
+        </div>
 
-        <main class="container mx-auto px-6 py-16">
+        <main class="container mx-auto px-4 sm:px-6 py-16">
             <section id="hero" class="flex flex-col-reverse md:flex-row items-center justify-between min-h-[80vh]">
                 <div class="md:w-2/3 text-center md:text-left mt-12 md:mt-0">
-                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white animate-on-scroll">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white animate-on-scroll">
                         Hi, I'm <span class="accent-color">KOSALA NAYANAJITH DESHAPRIYA</span>
                     </h1>
-                    <p class="text-xl md:text-2xl mt-4 text-gray-300 animate-on-scroll delay-100">
+                    <p class="text-lg sm:text-xl md:text-2xl mt-4 text-gray-300 animate-on-scroll delay-100">
                         Computer Engineering Student at the University of Jaffna.
                     </p>
                     <p class="mt-4 max-w-2xl text-gray-400 animate-on-scroll delay-200">
@@ -576,34 +626,58 @@
                 </div>
             </section>
             
-            <section id="testimonials" class="py-24">
-                <h2 class="section-title animate-on-scroll">Client Testimonials</h2>
-                <p class="text-center text-lg text-gray-400 max-w-3xl mx-auto -mt-8 mb-16 animate-on-scroll delay-100">
-                    Here's what some of my clients on Fiverr have to say about my work. Clicking on an image will open it in a larger view.
-                </p>
-                <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div class="interactive-card certificate-item p-2 animate-on-scroll" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_0">
-                        <div class="testimonial-image-container">
-                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_0" alt="Fiverr testimonial 1" class="testimonial-image">
-                        </div>
-                    </div>
-                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-100" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_1">
-                        <div class="testimonial-image-container">
-                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_1" alt="Fiverr testimonial 2" class="testimonial-image">
-                        </div>
-                    </div>
-                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-200" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_2">
-                        <div class="testimonial-image-container">
-                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_2" alt="Fiverr testimonial 3" class="testimonial-image">
-                        </div>
-                    </div>
-                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-300" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_3">
-                        <div class="testimonial-image-container">
-                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_3" alt="Fiverr testimonial 4" class="testimonial-image">
-                        </div>
-                    </div>
-                </div>
-            </section>
+           <section id="testimonials" class="py-24">
+    <h2 class="section-title animate-on-scroll">Client Testimonials</h2>
+    <p class="text-center text-lg text-gray-400 max-w-3xl mx-auto -mt-8 mb-16 animate-on-scroll delay-100">
+        Here's what some of my clients on Fiverr have to say about my work. Clicking on an image will open it in a larger view.
+    </p>
+    
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-6">
+        
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="a.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="a.jpg" alt="Fiverr testimonial 1" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll delay-100 w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="b.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="b.jpg" alt="Fiverr testimonial 2" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+        
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll delay-200 w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="c.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="c.jpg" alt="Fiverr testimonial 3" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll delay-300 w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="d.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="d.jpg" alt="Fiverr testimonial 4" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+        
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll delay-400 w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="e.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="e.jpg" alt="Fiverr testimonial 5" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+
+        <div class="group interactive-card certificate-item p-1.5 animate-on-scroll delay-500 w-full max-w-xs sm:w-auto sm:flex-1 sm:basis-[45%] md:basis-[30%] lg:basis-[22%]" data-img-src="f.jpg">
+            <div class="testimonial-image-container relative">
+                <img src="f.jpg" alt="Fiverr testimonial 6" class="testimonial-image">
+                <div class="testimonial-overlay group-hover:opacity-100">Client Review</div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
             <section id="cv" class="py-24">
                 <div class="max-w-2xl mx-auto text-center animate-on-scroll">
@@ -710,16 +784,38 @@
             header.classList.toggle('scrolled-nav', window.scrollY > 50);
         });
         
+        // --- Mobile Menu Logic ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.toggle('is-open');
+            document.body.classList.toggle('overflow-hidden', isOpen);
+            menuIcon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+            lucide.createIcons();
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('is-open')) {
+                    toggleMenu();
+                }
+            });
+        });
+
         // --- Certificate & Testimonial Modal Lightbox Logic ---
         const modalOverlay = document.getElementById('modal-overlay');
         const modalImage = document.getElementById('modal-image');
         const modalClose = document.getElementById('modal-close');
-        // This selector now works for both certificates and testimonials
         const certificateItems = document.querySelectorAll('.certificate-item');
 
         const openModal = (imgSrc) => {
             modalImage.src = imgSrc;
             modalOverlay.classList.add('visible');
+            // Delay opacity transition to allow display property to apply first
             setTimeout(() => {
                  modalOverlay.style.opacity = '1';
             }, 10);
@@ -755,6 +851,15 @@
         // --- Smooth Scroll for Nav Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // Let the mobile nav links handle their own logic for closing the menu
+                if (this.classList.contains('mobile-nav-link')) {
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    return;
+                }
+
                 e.preventDefault();
                 const targetElement = document.querySelector(this.getAttribute('href'));
                 if(targetElement) {
@@ -764,4 +869,4 @@
         });
     </script>
 </body>
-</html>I nee to updat this one by adding the education section for this to show my education details and academic achievements
+</html>
