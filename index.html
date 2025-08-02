@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeXneuron - Portfolio</title>
+    <title>Kosala Nayanajith Deshapriya - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,10 +31,7 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: 
                 radial-gradient(at 20% 20%, hsla(188,97%,50%,0.2) 0px, transparent 50%),
                 radial-gradient(at 80% 20%, hsla(224,97%,50%,0.2) 0px, transparent 50%),
@@ -82,22 +79,17 @@
         #tsparticles {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
         }
-        #welcome-screen .content {
-            position: relative; z-index: 1;
-        }
-        #welcome-screen.hidden {
-            opacity: 0; pointer-events: none; transform: scale(1.1);
-        }
-        #welcome-screen .logo-container img {
+        #welcome-screen .content { position: relative; z-index: 1; }
+        #welcome-screen.hidden { opacity: 0; pointer-events: none; transform: scale(1.1); }
+        #welcome-screen .profile-image-container img {
             width: 180px; height: 180px; border-radius: 50%;
             border: 4px solid var(--accent-color);
             box-shadow: 0 0 35px rgba(34, 211, 238, 0.5);
-            margin-bottom: 2rem;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2rem; margin-left: auto; margin-right: auto;
+            object-fit: cover;
         }
         .intro-text {
-            color: white; font-size: clamp(2.5rem, 8vw, 4rem);
+            color: white; font-size: clamp(1.8rem, 6vw, 3.5rem);
             font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 15px var(--accent-color);
         }
         .intro-subtext {
@@ -123,22 +115,16 @@
         #main-content {
             display: none; opacity: 0; transition: opacity 1s ease-in; position: relative; z-index: 10;
         }
-        #main-content.visible {
-            display: block; opacity: 1;
-        }
+        #main-content.visible { display: block; opacity: 1; }
 
         /* On-Scroll Fade-Up Animation */
         .animate-on-scroll {
             opacity: 0; transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .animate-on-scroll.is-visible {
-            opacity: 1; transform: translateY(0);
-        }
-        .delay-100 { transition-delay: 0.1s; }
-        .delay-200 { transition-delay: 0.2s; }
-        .delay-300 { transition-delay: 0.3s; }
-        .delay-400 { transition-delay: 0.4s; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 0.1s; } .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; } .delay-400 { transition-delay: 0.4s; }
         .delay-500 { transition-delay: 0.5s; }
 
         /* Header & Nav */
@@ -159,10 +145,8 @@
             background-color: var(--accent-color);
             transform-origin: bottom right; transition: transform 0.3s ease-out;
         }
-        .nav-link:hover::after {
-            transform: scaleX(1); transform-origin: bottom left;
-        }
-        .brand-name { font-weight: 800; color: white; }
+        .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+        .brand-name { font-weight: 700; color: white; }
 
         /* General Styles */
         .section-title {
@@ -171,7 +155,7 @@
         }
         .accent-color { color: var(--accent-color); }
 
-        /* Interactive Card Effects */
+        /* Card Effects */
         .interactive-card {
             background: rgba(20, 26, 34, 0.6); backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
@@ -183,14 +167,138 @@
             transform: perspective(1000px) translateY(-8px) rotateX(5deg) scale(1.03);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(34, 211, 238, 0.3);
         }
+        .certificate-item { cursor: pointer; }
         
-        .skill-badge {
-            background-color: var(--dark-gray); color: var(--light-gray);
-            padding: 0.5rem 1rem; border-radius: 1.5rem;
-            font-weight: 500; transition: background-color 0.3s, color 0.3s;
+        /* Original Skill Bar Styles (still needed) */
+        .skill-item { margin-bottom: 1rem; }
+        .skill-item .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
-        .skill-badge:hover {
-            background-color: var(--accent-color); color: var(--dark-bg);
+        .progress-bar {
+            background-color: var(--dark-gray);
+            border-radius: 0.5rem;
+            height: 12px;
+            overflow: hidden;
+        }
+        .progress-bar-inner {
+            background-color: var(--accent-color);
+            height: 100%;
+            width: 0; /* Initial width is 0 */
+            border-radius: 0.5rem;
+            transition: width 1.5s ease-out; /* Animate the width property */
+        }
+        
+        /* Modal Lightbox Styles */
+        #modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #modal-overlay.visible {
+            display: flex;
+        }
+        #modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+        #modal-overlay.visible #modal-content {
+            transform: scale(1);
+        }
+        #modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 0.5rem;
+        }
+        #modal-close {
+            position: absolute;
+            top: -15px; right: -15px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 2rem;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+        #modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* New styles for the skill category cards */
+        .skill-card {
+            background: rgba(20, 26, 34, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Enhanced h3 title to support icons */
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0;
+            border-left: none;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Styling for the soft skills list */
+        .competencies-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            color: var(--light-gray);
+        }
+        .competency-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Styles for Image Testimonials */
+        .testimonial-image-container {
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        
+        .testimonial-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .interactive-card:hover .testimonial-image {
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -201,15 +309,15 @@
     <div id="welcome-screen">
         <div id="tsparticles"></div>
         <div class="content">
-            <div class="logo-container animate-on-scroll is-visible">
-                <img src="logo.png" alt="CodeXneuron Logo">
+            <div class="profile-image-container animate-on-scroll is-visible">
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQHCHj0pP2hPuQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728053509704?e=1758153600&v=beta&t=8040NShEtKi7uoMtmlLpTT80KzlRwJE_O_warTpRpWU" alt="Kosala Nayanajith Deshapriya profile picture" referrerpolicy="no-referrer">
             </div>
-            <div class="intro-text animate-on-scroll is-visible delay-100">Welcome to CodeXneuron</div>
+            <div class="intro-text animate-on-scroll is-visible delay-100">KOSALA NAYANAJITH DESHAPRIYA</div>
             <div class="intro-subtext animate-on-scroll is-visible delay-200">
-                Your journey into the world of Machine Learning and Computer Engineering begins here.
+                A showcase of my journey into Machine Learning and Computer Engineering.
             </div>
             <div class="animate-on-scroll is-visible delay-300">
-                <button class="lets-go-btn" onclick="goToMainContent()">Let's Go In</button>
+                <button class="lets-go-btn" onclick="goToMainContent()">Explore My Work</button>
             </div>
         </div>
     </div>
@@ -219,14 +327,15 @@
             <nav class="container mx-auto px-6 py-4">
                 <div class="flex items-center justify-between">
                     <a href="#" class="flex items-center">
-                        <img src="logo.png" alt="CodeXneuron Logo" class="h-10 w-10 mr-3 rounded-full">
-                        <span class="brand-name text-3xl">CodeXneuron</span>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQHCHj0pP2hPuQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728053509704?e=1758153600&v=beta&t=8040NShEtKi7uoMtmlLpTT80KzlRwJE_O_warTpRpWU" alt="Kosala Nayanajith profile picture" class="h-10 w-10 mr-3 rounded-full object-cover" referrerpolicy="no-referrer">
+                        <span class="brand-name text-2xl">Kosala Nayanajith Deshapriya</span>
                     </a>
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="#about" class="nav-link">About</a>
                         <a href="#skills" class="nav-link">Skills</a>
                         <a href="#projects" class="nav-link">Projects</a>
                         <a href="#certifications" class="nav-link">Certifications</a>
+                        <a href="#testimonials" class="nav-link">Testimonials</a>
                         <a href="#contact" class="nav-link">Contact</a>
                         <a href="#cv" class="nav-link">Download CV</a>
                     </div>
@@ -247,7 +356,7 @@
                         Computer Engineering Student at the University of Jaffna.
                     </p>
                     <p class="mt-4 max-w-2xl text-gray-400 animate-on-scroll delay-200">
-                        Passionate about Machine Learning, Web Development, and AI. Founder of CodeXneuron.
+                        Passionate about Machine Learning, Web Development, and AI.
                     </p>
                     <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4 animate-on-scroll delay-300">
                         <a href="#contact" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/20">Get In Touch</a>
@@ -257,59 +366,238 @@
                 </div>
                 <div class="md:w-1/3 animate-on-scroll delay-200">
                     <img src="https://media.licdn.com/dms/image/v2/D5603AQHCHj0pP2hPuQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728053509704?e=1758153600&v=beta&t=8040NShEtKi7uoMtmlLpTT80KzlRwJE_O_warTpRpWU" 
-                         alt="Profile picture" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl mx-auto border-4 border-cyan-500/50 hover:border-cyan-400 transition-all duration-300">
+                         alt="Profile picture" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl mx-auto border-4 border-cyan-500/50 hover:border-cyan-400 transition-all duration-300" referrerpolicy="no-referrer">
                 </div>
             </section>
 
             <section id="about" class="py-24">
                 <h2 class="section-title animate-on-scroll">About Me</h2>
                 <div class="max-w-4xl mx-auto text-center text-gray-300 text-lg leading-relaxed space-y-4">
-                    <p class="animate-on-scroll">I am an ambitious and motivated Computer Engineering undergraduate with practical experience in Machine Learning, Web Development, AI frameworks, e-commerce, and communication technologies. I have served as an IEEE PES editor, gaining editorial, technical writing, collaboration, and leadership skills.</p>
-                    <p class="animate-on-scroll delay-100">My goal is to build practical solutions and pursue further innovations in AI and machine learning. As the founder of CodeXneuron, I am committed to pushing the boundaries of technology in the ML and computer engineering space.</p>
+                    <p class="animate-on-scroll">
+                        <span class="text-2xl font-extrabold text-white block mb-2">Versatile Computer Engineer & Creative Graphic Designer</span>
+                        I am a dynamic <span class="font-bold accent-color">Computer Engineering undergraduate</span> who thrives on merging <span class="font-bold">technical innovation</span> with <span class="font-bold">creative design</span>. My core passions include <span class="font-bold">machine learning, web development, AI frameworks</span>, and building scalable tech solutions. 
+                        <br><br>
+                        At the same time, I am an <span class="font-bold accent-color">expert graphic designer</span> with a sharp eye for user-centric, visually stunning digital experiences. As an active <span class="font-bold text-green-400">Fiverr Level 01 Seller</span>, I deliver professional design and development projects to clients worldwide, building my reputation as a trusted freelancer with a versatile skill set.
+                        <br><br>
+                        Through freelancing, I've honed not just design and code—but also <span class="font-bold">communication, project management, and client collaboration</span> abilities that set me apart. As an <span class="font-bold">IEEE PES Editor</span>, I further developed expertise in editorial work, technical writing, and leading collaborative teams—all skills that fuel my high standards and innovative outcomes.
+                        <br><br>
+                        <span class="font-bold">My mission</span>: to craft intelligent, impactful technology that combines creative vision with engineering excellence. I am genuinely driven to grow as a <span class="accent-color font-bold">developer</span>, <span class="accent-color font-bold">designer</span>, and <span class="accent-color font-bold">AI enthusiast</span>, always exploring the intersection where tech meets art to make a difference.
+                    </p>
+                    <p class="animate-on-scroll delay-100">
+                        If you seek someone who bridges <span class="font-bold">full-stack engineering</span> with <span class="font-bold">design mastery</span>, let's connect—I'm always ready for fresh challenges and collaboration.
+                    </p>
+                </div>
+            </section>
+
+            <section id="medium" class="py-24">
+                <h2 class="section-title animate-on-scroll">Follow Me on Medium</h2>
+                <div class="max-w-2xl mx-auto text-center animate-on-scroll">
+                    <p class="text-gray-300 text-lg mb-8">
+                        For deep dives, tutorials, and my thoughts on Machine Learning and Software Development, follow me on Medium.
+                    </p>
+                    <a href="https://medium.com/@deshapriyakosala" target="_blank" 
+                       class="inline-flex items-center justify-center space-x-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-lg py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/30"
+                       rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none">
+                            <path d="M2.01 6.041a1.01 1.01 0 0 1 0-1.849L9.867 2.02a1 1 0 0 1 1.31.653l4.05 12.049 4.791-12.09a.99.99 0 0 1 1.53-.435l3.833 3.164a1.008 1.008 0 0 1-.123 1.744l-7.006 4.434 5.517 8.18a1 1 0 0 1-1.553 1.2l-7.465-9.69-2.218 5.852a.995.995 0 0 1-1.307.62l-3.902-1.457a1 1 0 0 1-.608-1.46l3.18-6.813-5.318-3.858z"/>
+                        </svg>
+                        <span>Follow on Medium</span>
+                    </a>
                 </div>
             </section>
 
             <section id="skills" class="py-24">
-                <h2 class="section-title animate-on-scroll">Technical Skills</h2>
-                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="interactive-card p-6 animate-on-scroll"><h3 class="text-2xl font-bold text-white mb-4 flex items-center"><i data-lucide="code-2" class="mr-3 accent-color"></i>Languages</h3><div class="flex flex-wrap gap-2"><span class="skill-badge">C#</span><span class="skill-badge">Python</span><span class="skill-badge">JavaScript</span><span class="skill-badge">HTML/CSS</span><span class="skill-badge">SQL</span></div></div>
-                    <div class="interactive-card p-6 animate-on-scroll delay-100"><h3 class="text-2xl font-bold text-white mb-4 flex items-center"><i data-lucide="brain-circuit" class="mr-3 accent-color"></i>ML / AI</h3><div class="flex flex-wrap gap-2"><span class="skill-badge">Supervised Learning</span><span class="skill-badge">Unsupervised Learning</span><span class="skill-badge">NLP</span><span class="skill-badge">Scikit-learn</span><span class="skill-badge">TensorFlow</span><span class="skill-badge">Keras</span></div></div>
-                    <div class="interactive-card p-6 animate-on-scroll delay-200"><h3 class="text-2xl font-bold text-white mb-4 flex items-center"><i data-lucide="server" class="mr-3 accent-color"></i>Frameworks & Tools</h3><div class="flex flex-wrap gap-2"><span class="skill-badge">Flask</span><span class="skill-badge">WordPress</span><span class="skill-badge">Visual Studio</span><span class="skill-badge">VS Code</span><span class="skill-badge">Git & GitHub</span><span class="skill-badge">Bootstrap</span></div></div>
+                <h2 class="section-title animate-on-scroll">Technical Skills & Competencies</h2>
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="skill-card animate-on-scroll">
+                        <h3><i data-lucide="code-2"></i>Web Development (MERN)</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="skill-item"><div class="skill-info"><span>React.js</span><span>90%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="90%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Node.js & Express.js</span><span>85%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="85%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>MongoDB</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>HTML, CSS & JavaScript</span><span>95%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="95%"></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card animate-on-scroll delay-100">
+                        <h3><i data-lucide="brain-circuit"></i>Machine Learning & AI</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="skill-item"><div class="skill-info"><span>Python</span><span>95%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="95%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Scikit-learn</span><span>90%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="90%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>TensorFlow & Keras</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Natural Language Processing</span><span>85%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="85%"></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card animate-on-scroll delay-200">
+                        <h3><i data-lucide="pencil-ruler"></i>Design & Tools</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="skill-item"><div class="skill-info"><span>Adobe Photoshop</span><span>90%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="90%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Adobe Illustrator</span><span>85%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="85%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Git & GitHub</span><span>95%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="95%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Figma (UI/UX)</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card animate-on-scroll delay-300">
+                        <h3><i data-lucide="database"></i>Databases & Cloud</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="skill-item"><div class="skill-info"><span>MySQL</span><span>85%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="85%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Firebase</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Docker</span><span>70%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="70%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>AWS (S3, EC2 Basics)</span><span>65%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="65%"></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card animate-on-scroll delay-400">
+                        <h3><i data-lucide="smartphone"></i>Mobile & Other Software</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="skill-item"><div class="skill-info"><span>Flutter</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>C# (.NET)</span><span>75%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="75%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>C / C++</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                            <div class="skill-item"><div class="skill-info"><span>Cisco Packet Tracer</span><span>80%</span></div><div class="progress-bar"><div class="progress-bar-inner" data-width="80%"></div></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card animate-on-scroll delay-500">
+                        <h3><i data-lucide="user-check"></i>Core Competencies</h3>
+                        <div class="mt-6 space-y-4">
+                            <div class="competencies-list">
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Problem Solving</div>
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Team Collaboration</div>
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Project Management</div>
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Effective Communication</div>
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Adaptability</div>
+                                <div class="competency-item"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i>Creative Thinking</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             <section id="projects" class="py-24">
                 <h2 class="section-title animate-on-scroll">My Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="interactive-card overflow-hidden animate-on-scroll"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=AI+Reminder+Bot" alt="AI Reminder Bot"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">WhatsApp-Based AI Reminder Bot</h3><p class="text-gray-400 text-base min-h-[6rem]">Designing a full-stack AI reminder bot using Python, Flask, and Twilio, with NLP for intent detection.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">Python</span><span class="skill-badge text-sm">Flask</span><span class="skill-badge text-sm">Twilio</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
-                    <div class="interactive-card overflow-hidden animate-on-scroll delay-100"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Booking.O" alt="Booking.O"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">Booking.O</h3><p class="text-gray-400 text-base min-h-[6rem]">Developed a desktop GUI application for hotel room bookings with encrypted login and real-time availability.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">C#</span><span class="skill-badge text-sm">Visual Studio</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
-                    <div class="interactive-card overflow-hidden animate-on-scroll delay-200"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Laptop+Price+Predictor" alt="Laptop Price Predictor"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">Laptop Price Predictor</h3><p class="text-gray-400 text-base min-h-[6rem]">An ML-driven web app using Random Forest to predict laptop prices. Hosted on Heroku.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">Flask</span><span class="skill-badge text-sm">ML</span><span class="skill-badge text-sm">Heroku</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
-                    <div class="interactive-card overflow-hidden animate-on-scroll delay-300"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=AI+Chatbot" alt="AI Chatbot"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">AI Chatbot with GPT-4o-mini</h3><p class="text-gray-400 text-base min-h-[6rem]">Built a simple AI chatbot integrating GPT-4o-mini via OpenAI API. This marked my entry into ML/AI demo development.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">Python</span><span class="skill-badge text-sm">OpenAI API</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
-                    <div class="interactive-card overflow-hidden animate-on-scroll delay-400"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Freelancer+SL" alt="FreelancerSL"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">FreelancerSL Marketplace</h3><p class="text-gray-400 text-base min-h-[6rem]">Created a marketplace platform enabling secure payments, chat features, and project management for Sri Lankan freelancers.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">WordPress</span><span class="skill-badge text-sm">Web Dev</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
-                    <div class="interactive-card overflow-hidden animate-on-scroll delay-500"><img class="w-full h-48 object-cover" src="https://placehold.co/600x400/0d1117/22d3ee?text=Joystick+Wheelchair" alt="Joystick Wheelchair"><div class="p-6"><h3 class="font-bold text-xl mb-2 text-white">Joystick-Controlled Wheelchair</h3><p class="text-gray-400 text-base min-h-[6rem]">Designed and developed a joystick-controlled wheelchair to empower individuals with accessibility needs.</p><div class="flex flex-wrap gap-2 mt-4"><span class="skill-badge text-sm">Design</span><span class="skill-badge text-sm">Engineering</span></div><a href="#" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a></div></div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll">
+                        <img class="w-full h-48 object-cover" src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="AI Reminder Bot" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">WhatsApp-Based AI Reminder Bot</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">Designing a full-stack AI reminder bot using Python, Flask, and Twilio, with NLP for intent detection.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll delay-100">
+                        <img class="w-full h-48 object-cover" src="https://media.licdn.com/dms/image/v2/D5622AQEzLKRLYLxq_A/feedshare-shrink_1280/feedshare-shrink_1280/0/1704349158899?e=1756944000&v=beta&t=q7XyTzO-Es4R3k5qvH_j4k9V2JxuZtUq5bTFuDrklzg" alt="Booking.O" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Booking.O</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">Developed a desktop GUI application for hotel room bookings with encrypted login and real-time availability.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll delay-200">
+                        <img class="w-full h-48 object-cover" src="https://media.licdn.com/dms/image/v2/D5622AQFmX2GRA7Xm9g/feedshare-shrink_2048_1536/B56ZecnzHuHEAs-/0/1750679370530?e=1756944000&v=beta&t=y8MtHi1MqmHOSFQm3yXLQQMEJFqmYXPkHwJYbGA2whQ" alt="Laptop Price Predictor" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Laptop Price Predictor</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">An ML-driven web app using Random Forest to predict laptop prices. Hosted on Heroku.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron/ML_laptop-price-predictor.git" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll delay-300">
+                        <img class="w-full h-48 object-cover" src="https://www.zdnet.com/a/img/resize/7ecf259b4130d7418be71f0764f581a2c0ff7777/2024/01/03/2f68f2da-afef-4613-a797-a3406182819e/gettyimages-1337617436.jpg?auto=webp&width=1280" alt="AI Chatbot" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">AI Chatbot with GPT-4o-mini</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">Built a simple AI chatbot integrating GPT-4o-mini via OpenAI API. This marked my entry into ML/AI demo development.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron/AI-Chatbot_OPENAi.git" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll delay-400">
+                        <img class="w-full h-48 object-cover" src="https://media.licdn.com/dms/image/v2/D562DAQEqjnx0_2UzuA/profile-treasury-image-shrink_1920_1920/profile-treasury-image-shrink_1920_1920/0/1727157625276?e=1754629200&v=beta&t=vxTH9dPPXJ_3J3gmD8TDnhToEXbwbx61KFCIfexvWzA" alt="FreelancerSL" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">FreelancerSL Marketplace</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">Created a marketplace platform enabling secure payments, chat features, and project management for Sri Lankan freelancers.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-card overflow-hidden animate-on-scroll delay-500">
+                        <img class="w-full h-48 object-cover" src="https://media.licdn.com/dms/image/v2/D562DAQGLTz_3Cre34w/profile-treasury-image-shrink_1920_1920/profile-treasury-image-shrink_1920_1920/0/1727161989286?e=1754629200&v=beta&t=saobDchlYv0YFyHpDXQ_VI5k0PK7XURymLUNwsxUnzo" alt="Joystick Wheelchair" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Joystick-Controlled Wheelchair</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">Designed and developed a joystick-controlled wheelchair to empower individuals with accessibility needs.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             
             <section id="certifications" class="py-24">
                 <h2 class="section-title animate-on-scroll">Certifications & Achievements</h2>
-                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll">
-                        <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">BITCODE V5, Inter-University Coding Competition</h3><p class="text-gray-400 text-sm">Rajarata University of Sri Lanka, Nov 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: Java</p></div>
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQH0jqbyCFWzOg/profile-treasury-image-shrink_800_800/B56ZfV1c95G0AY-/0/1751639250388?e=1754636400&v=beta&t=OnUReKzSl_bGWVoZ3ZoLojp5Waz5umwKOJaR94ce9_c">
+                        <img src="https://media.licdn.com/dms/image/v2/D562DAQH0jqbyCFWzOg/profile-treasury-image-shrink_800_800/B56ZfV1c95G0AY-/0/1751639250388?e=1754636400&v=beta&t=OnUReKzSl_bGWVoZ3ZoLojp5Waz5umwKOJaR94ce9_c" alt="BITCODE V5 Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                        <div><h3 class="font-bold text-lg text-white">BITCODE V5 Competition</h3><p class="text-gray-400 text-sm">Rajarata University of Sri Lanka</p></div>
                     </div>
-                    <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll delay-100">
-                        <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">Coding the Static Restaurant Site with Bootstrap</h3><p class="text-gray-400 text-sm">The Johns Hopkins University, Coursera | Oct 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: Bootstrap, jQuery, Responsive Design</p></div>
+                    <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll delay-100" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQH9qbPgzMJ64g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728377776669?e=1754636400&v=beta&t=4L6kbRL6PTUNLnn4gXag8NAFZGDDKv4lWOO--gSzBzc">
+                        <img src="https://media.licdn.com/dms/image/v2/D562DAQH9qbPgzMJ64g/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728377776669?e=1754636400&v=beta&t=4L6kbRL6PTUNLnn4gXag8NAFZGDDKv4lWOO--gSzBzc" alt="Bootstrap Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                        <div><h3 class="font-bold text-lg text-white">Static Site with Bootstrap</h3><p class="text-gray-400 text-sm">The Johns Hopkins University</p></div>
                     </div>
-                    <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll delay-200">
-                        <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">HTML, CSS, and JavaScript for Web Developers</h3><p class="text-gray-400 text-sm">The Johns Hopkins University, Coursera | Oct 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: HTML, CSS, JavaScript</p></div>
+                    <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll delay-200" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQFsnKwovozpJw/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728376219001?e=1754636400&v=beta&t=1OnmqxMWQCj_l2S4is8t1z_MrwSsbKCc0x0wtzC8fJk">
+                        <img src="https://media.licdn.com/dms/image/v2/D562DAQFsnKwovozpJw/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728376219001?e=1754636400&v=beta&t=1OnmqxMWQCj_l2S4is8t1z_MrwSsbKCc0x0wtzC8fJk" alt="HTML, CSS, JS Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                        <div><h3 class="font-bold text-lg text-white">HTML, CSS, and JS for Web Devs</h3><p class="text-gray-400 text-sm">The Johns Hopkins University</p></div>
                     </div>
-                    <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll delay-300">
-                         <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">Introduction to CSS3 Web Development</h3><p class="text-gray-400 text-sm">The Johns Hopkins University, Coursera | Oct 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: CSS3, Web Development</p></div>
+                    <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll delay-300" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQFK233Erg0GHQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728376509892?e=1754636400&v=beta&t=FJIv9Ipw9tYYQaWtdIHYHiYa8tjpVNMeZ5wmviIiR4U">
+                         <img src="https://media.licdn.com/dms/image/v2/D562DAQFK233Erg0GHQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1728376509892?e=1754636400&v=beta&t=FJIv9Ipw9tYYQaWtdIHYHiYa8tjpVNMeZ5wmviIiR4U" alt="CSS3 Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                        <div><h3 class="font-bold text-lg text-white">Introduction to CSS3</h3><p class="text-gray-400 text-sm">The Johns Hopkins University</p></div>
                     </div>
-                     <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll delay-400">
-                         <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">Build a Full Website Using WordPress</h3><p class="text-gray-400 text-sm">Coursera | Oct 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: WordPress</p></div>
+                     <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll delay-400" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQFMgxryQLjHnQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1727930905388?e=1754636400&v=beta&t=zn7IOFRSyi2Acw3TkYZNkD_IQGj2LW36J0BKCXCyApc">
+                          <img src="https://media.licdn.com/dms/image/v2/D562DAQFMgxryQLjHnQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1727930905388?e=1754636400&v=beta&t=zn7IOFRSyi2Acw3TkYZNkD_IQGj2LW36J0BKCXCyApc" alt="WordPress Full Site Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                         <div><h3 class="font-bold text-lg text-white">Build a Full Website Using WordPress</h3><p class="text-gray-400 text-sm">Coursera</p></div>
                     </div>
-                     <div class="interactive-card p-6 flex items-start gap-4 animate-on-scroll delay-500">
-                         <img src="https://placehold.co/100x100/1f2937/22d3ee?text=Cert" alt="Cert Image" class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-md flex-shrink-0"> <div><h3 class="font-bold text-lg text-white">Build a Free Website With WordPress</h3><p class="text-gray-400 text-sm">Coursera | Oct 2024</p><p class="text-cyan-400/80 mt-1 text-sm">Skills: WordPress</p></div>
+                     <div class="interactive-card certificate-item p-6 flex items-start gap-4 animate-on-scroll delay-500" data-img-src="https://media.licdn.com/dms/image/v2/D562DAQFcBBFXU3hCZA/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1727867706807?e=1754636400&v=beta&t=kGbSiSfqy3ooGgN6itCzlLsIFjTRXKIDZZn-50T07yQ">
+                          <img src="https://media.licdn.com/dms/image/v2/D562DAQFcBBFXU3hCZA/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1727867706807?e=1754636400&v=beta&t=kGbSiSfqy3ooGgN6itCzlLsIFjTRXKIDZZn-50T07yQ" alt="WordPress Free Site Certificate" class="w-20 h-20 object-cover rounded-md flex-shrink-0" referrerpolicy="no-referrer">
+                         <div><h3 class="font-bold text-lg text-white">Build a Free Website With WordPress</h3><p class="text-gray-400 text-sm">Coursera</p></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="testimonials" class="py-24">
+                <h2 class="section-title animate-on-scroll">Client Testimonials</h2>
+                <p class="text-center text-lg text-gray-400 max-w-3xl mx-auto -mt-8 mb-16 animate-on-scroll delay-100">
+                    Here's what some of my clients on Fiverr have to say about my work. Clicking on an image will open it in a larger view.
+                </p>
+                <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="interactive-card certificate-item p-2 animate-on-scroll" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_0">
+                        <div class="testimonial-image-container">
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_0" alt="Fiverr testimonial 1" class="testimonial-image">
+                        </div>
+                    </div>
+                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-100" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_1">
+                        <div class="testimonial-image-container">
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_1" alt="Fiverr testimonial 2" class="testimonial-image">
+                        </div>
+                    </div>
+                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-200" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_2">
+                        <div class="testimonial-image-container">
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_2" alt="Fiverr testimonial 3" class="testimonial-image">
+                        </div>
+                    </div>
+                     <div class="interactive-card certificate-item p-2 animate-on-scroll delay-300" data-img-src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_3">
+                        <div class="testimonial-image-container">
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/12140191564085124884_3" alt="Fiverr testimonial 4" class="testimonial-image">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -331,6 +619,13 @@
             </section>
         </main>
     </div>
+    
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <img id="modal-image" src="" alt="Certificate Preview" referrerpolicy="no-referrer">
+        </div>
+        <div id="modal-close">&times;</div>
+    </div>
 
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-500">
@@ -342,7 +637,7 @@
         lucide.createIcons();
 
         // --- tsParticles Welcome Screen Animation ---
-        const particlesConfig = {
+        tsParticles.load('tsparticles', {
             background: { color: { value: '#0d1117' } },
             fpsLimit: 60,
             interactivity: {
@@ -356,35 +651,21 @@
             },
             particles: {
                 color: { value: '#22d3ee' },
-                links: {
-                    color: '#22d3ee',
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.3,
-                    width: 1,
-                },
+                links: { color: '#22d3ee', distance: 150, enable: true, opacity: 0.3, width: 1, },
                 collisions: { enable: true },
-                move: {
-                    direction: 'none',
-                    enable: true,
-                    outModes: { default: 'bounce' },
-                    random: false,
-                    speed: 1,
-                    straight: false,
-                },
+                move: { direction: 'none', enable: true, outModes: { default: 'bounce' }, random: false, speed: 1, straight: false, },
                 number: { density: { enable: true, area: 800 }, value: 80 },
                 opacity: { value: 0.3 },
                 shape: { type: 'circle' },
                 size: { value: { min: 1, max: 5 } },
             },
             detectRetina: true,
-        };
-        tsParticles.load('tsparticles', particlesConfig);
+        });
 
+        // --- Core Page Logic ---
         window.addEventListener('load', () => {
-            const loadingPage = document.getElementById('loading');
-            loadingPage.style.opacity = '0';
-            setTimeout(() => { loadingPage.style.display = 'none'; }, 500);
+            document.getElementById('loading').style.opacity = '0';
+            setTimeout(() => { document.getElementById('loading').style.display = 'none'; }, 500);
         });
         
         function goToMainContent() {
@@ -397,20 +678,73 @@
             }, 1000);
         }
 
+        // --- Intersection Observer for Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    
+                    if (entry.target.classList.contains('skill-card')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-bar-inner');
+                        progressBars.forEach(bar => {
+                            const targetWidth = bar.getAttribute('data-width');
+                            bar.style.width = targetWidth;
+                        });
+                    }
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.2 });
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
+        // --- Header Scroll Effect ---
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled-nav', window.scrollY > 50);
         });
+        
+        // --- Certificate & Testimonial Modal Lightbox Logic ---
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalImage = document.getElementById('modal-image');
+        const modalClose = document.getElementById('modal-close');
+        // This selector now works for both certificates and testimonials
+        const certificateItems = document.querySelectorAll('.certificate-item');
 
+        const openModal = (imgSrc) => {
+            modalImage.src = imgSrc;
+            modalOverlay.classList.add('visible');
+            setTimeout(() => {
+                 modalOverlay.style.opacity = '1';
+            }, 10);
+        };
+
+        const closeModal = () => {
+            modalOverlay.style.opacity = '0';
+            setTimeout(() => {
+                modalOverlay.classList.remove('visible');
+                modalImage.src = "";
+            }, 300);
+        };
+
+        certificateItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-img-src');
+                if (imgSrc) openModal(imgSrc);
+            });
+        });
+        
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('visible')) {
+                closeModal();
+            }
+        });
+
+        // --- Smooth Scroll for Nav Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
