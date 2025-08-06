@@ -1,8 +1,9 @@
-# CodeXneuron - Portfolio
+# Kosala Nayanajith Deshapriya - Portfolio
 
 Welcome to the personal portfolio of **Kosala Nayanajith Deshapriya**, a Computer Engineering student at the University of Jaffna. This portfolio showcases my skills, projects, certifications, and achievements in the fields of **Machine Learning**, **Web Development**, **AI**, and **Computer Engineering**.
 
-<img width="1916" height="913" alt="image" src="https://github.com/user-attachments/assets/67f8ef46-8d3e-4bd6-9fa5-d6d6b157952b" />
+<img width="1903" height="905" alt="image" src="https://github.com/user-attachments/assets/5e9a67f5-856d-4c27-b95d-71e0aef7e773" />
+
 
 ## Table of Contents
 
