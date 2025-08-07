@@ -67,6 +67,7 @@
                 radial-gradient(farthest-side, var(--accent-color) 94%, #0000) top/8px 8px no-repeat,
                 conic-gradient(#0000 30%, var(--accent-color));
             -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+            mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
             animation: l13 1s infinite linear;
         }
         @keyframes l13{ 100%{transform: rotate(1turn)} }
@@ -132,7 +133,7 @@
         .delay-500 { transition-delay: 0.5s; }
 
         /* Header & Nav */
-        header { transition: background-color: 0.4s ease-out; }
+        header { transition: background-color 0.4s ease-out; }
         header.scrolled-nav {
             background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
@@ -530,6 +531,37 @@
             <section id="projects" class="py-24">
                 <h2 class="section-title animate-on-scroll">My Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- New Project Block Start -->
+                    <div class="interactive-card overflow-hidden animate-on-scroll">
+                        <img class="w-full h-48 object-cover" src="https://private-user-images.githubusercontent.com/152676712/474912672-5e9a67f5-856d-4c27-b95d-71e0aef7e773.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTQ0NzEwODcsIm5iZiI6MTc1NDQ3MDc4NywicGF0aCI6Ii8xNTI2NzY3MTIvNDc0OTEyNjcyLTVlOWE2N2Y1LTg1NmQtNGMyNy1iOTVkLTcxZTBhZWY3ZTc3My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwODA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDgwNlQwODU5NDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00N2Q0ZmIyODRkNWMwNzMzMmZlZGJkMmVhYWNjZWRmNTUyN2MzMTNhMTA5MTNjYjM4YmUyNjBlOTRhMWYzYTAwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.R3hjmjnziPoH4lN_3olbcyVyIgjcGlryx_oaIwIIwpo" alt="New Project" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">My Portfolio - Neuron based Design </h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]"> I build these designs into functional products using HTML for structure, CSS for styling, and JavaScript for interactivity.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron/myportfolio/tree/main" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            <a href="https://codexneuron.github.io/myportfolio/" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="rocket" class="mr-2 h-4 w-4"></i>View Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Project Block End -->
+
+                     <!-- New Project Block Start -->
+                    <div class="interactive-card overflow-hidden animate-on-scroll">
+                        <img class="w-full h-48 object-cover" src="https://private-user-images.githubusercontent.com/152676712/460310121-b033577e-7b3c-4118-a8e3-7181322cca24.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTQ0NjgxODYsIm5iZiI6MTc1NDQ2Nzg4NiwicGF0aCI6Ii8xNTI2NzY3MTIvNDYwMzEwMTIxLWIwMzM1NzdlLTdiM2MtNDExOC1hOGUzLTcxODEzMjJjY2EyNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwODA2JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDgwNlQwODExMjZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yMmM0MDQ0ZjRjNmZlMTJiYjRjODI0OTE3ODRmMTYzOTdhY2U1MjRhNWNmYTlmMmVlNzk4YjJiZDFiMWE2YjQ2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.znXd2DZ-O8QWfStcIyg3lri3q6Z-KSbka8oU8tVd9ro" alt="New Project" referrerpolicy="no-referrer">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2 text-white">Hostel Management System - HostelSync</h3>
+                            <p class="text-gray-400 text-base min-h-[6rem]">This project is a full-stack web application built on a PHP backend and a MySQL relational database. The responsive UI uses HTML and Tailwind CSS.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <a href="https://github.com/CodeXneuron/HostelManagementSystem.git" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="github" class="mr-2 h-4 w-4"></i>View Code</a>
+                            <a href="http://hostelsync.free.nf/" target="_blank" class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-semibold mt-4"><i data-lucide="rocket" class="mr-2 h-4 w-4"></i>View Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Project Block End -->
+
+                    
+                
+
                     <div class="interactive-card overflow-hidden animate-on-scroll">
                         <img class="w-full h-48 object-cover" src="https://images.pexels.com/photos/8566472/pexels-photo-8566472.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="AI Reminder Bot" referrerpolicy="no-referrer">
                         <div class="p-6">
@@ -540,6 +572,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="interactive-card overflow-hidden animate-on-scroll delay-100">
                         <img class="w-full h-48 object-cover" src="https://media.licdn.com/dms/image/v2/D5622AQEzLKRLYLxq_A/feedshare-shrink_1280/feedshare-shrink_1280/0/1704349158899?e=1756944000&v=beta&t=q7XyTzO-Es4R3k5qvH_j4k9V2JxuZtUq5bTFuDrklzg" alt="Booking.O" referrerpolicy="no-referrer">
                         <div class="p-6">
@@ -594,6 +627,7 @@
                         </div>
                     </div>
                 </div>
+
             </section>
             
             <section id="certifications" class="py-24">
